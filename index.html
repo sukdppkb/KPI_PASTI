@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penilaian Prestasi Guru PASTI</title>
+<style>
+:root{--g:#2e7d32;--gd:#1b5e20;--gl:#e8f3e8;--ink:#1d2a1d;--mut:#5f6f5f;--line:#cfdccf;--bg:#f6f9f6;--card:#fff;--err:#b3261e}
+@media (prefers-color-scheme:dark){:root{--g:#66bb6a;--gd:#a5d6a7;--gl:#1f3322;--ink:#e6efe6;--mut:#9db09d;--line:#35503a;--bg:#121a13;--card:#1a251b;--err:#f2b8b5}}
+*{box-sizing:border-box}
+body{margin:0;font:15px/1.5 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:var(--g);color:#fff;padding:18px 16px 0}
+header h1{margin:0;font-size:20px}header p{margin:2px 0 12px;opacity:.9;font-size:13px}
+nav{display:flex;gap:4px;max-width:900px;margin:auto}
+nav button{border:0;background:rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:8px 8px 0 0;font:inherit;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--gd);font-weight:600}
+main{max-width:900px;margin:auto;padding:16px}
+section.panel{display:none}section.panel.on{display:block}
+fieldset{border:1px solid var(--line);background:var(--card);border-radius:10px;margin:0 0 16px;padding:14px 16px}
+legend{font-weight:700;color:var(--gd);padding:0 6px}
+label.f{display:block;margin:8px 0;font-size:13px;color:var(--mut)}
+input,textarea,select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font:inherit;background:var(--card);color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media(max-width:600px){.grid{grid-template-columns:1fr}}
+.item{padding:10px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+.item b{display:block}.item small{color:var(--mut)}
+.rate{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center}
+.rate input{position:absolute;opacity:0;width:0}
+.rate label{min-width:42px;text-align:center;padding:6px 0;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--card)}
+.rate input:checked+span{background:var(--g);color:#fff}
+.rate label span{display:block;border-radius:5px;padding:6px 0;margin:-6px 0}
+.rate input:focus-visible+span{outline:2px solid var(--gd);outline-offset:2px}
+.rate .cnt{width:90px}
+.sub{text-align:right;font-weight:700;color:var(--gd);margin-top:8px}
+.legend{font-size:12px;color:var(--mut);margin:-6px 0 12px}
+button.p{background:var(--g);color:#fff;border:0;padding:11px 22px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
+button.s{background:var(--gl);color:var(--gd);border:1px solid var(--line);padding:7px 12px;border-radius:6px;font:inherit;cursor:pointer}
+.msg{margin:10px 0;font-weight:600}.msg.err{color:var(--err)}
+.bar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}.bar>*{flex:1;min-width:140px}
+table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
+th{background:var(--gl);color:var(--gd)}
+tr.r{cursor:pointer}tr.r:hover{background:var(--gl)}
+.wrap{overflow-x:auto}
+.pill{padding:2px 10px;border-radius:99px;background:var(--gl);color:var(--gd);font-size:12px;white-space:nowrap}
+.det{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:14px}
+.det h3{margin:0 0 6px;color:var(--gd)}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}
+.mini div{background:var(--gl);border-radius:8px;padding:8px;text-align:center}.mini b{display:block;font-size:20px;color:var(--gd)}
+@media print{header,nav,.bar,#lock,.noprint{display:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Laporan Penilaian Prestasi Guru</h1>
+  <p>PASTI Dewan Pemuda PAS Kawasan Batu</p>
+  <nav>
+    <button id="t1" class="on" onclick="tab(1)">Isi Borang</button>
+    <button id="t2" onclick="tab(2)">Semakan Keputusan</button>
+  </nav>
+</header>
+<main>
+
+<!-- PANEL 1: ISI BORANG -->
+<section id="p1" class="panel on">
+  <form id="frm" onsubmit="return false">
+  <fieldset><legend>Maklumat guru yang dinilai</legend>
+    <div class="grid">
+      <label class="f">Tahun<input id="tahun" type="number" min="2020" max="2100" required></label>
+      <label class="f">Nama<input id="nama" required></label>
+      <label class="f">No. kad pengenalan<input id="kp" inputmode="numeric" maxlength="14" placeholder="cth: 900101-10-1234" required></label>
+      <label class="f">PASTI cawangan<input id="cawangan" required></label>
+      <label class="f">Tempoh perkhidmatan di PASTI Kawasan Batu (tulis tarikh)<input id="tempoh" required></label>
+      <label class="f">Elaun asas (RM)<input id="elaun" inputmode="decimal"></label>
+    </div>
+    <label class="f">Jawatan dalam PASTI cawangan / jabatan PASTI / Majlis Guru PASTI (senaraikan)<textarea id="jawatan" rows="2"></textarea></label>
+  </fieldset>
+  <p class="legend">Skala: 5 – Sangat tinggi · 4 – Tinggi · 3 – Sederhana · 2 – Rendah · 1 – Sangat rendah</p>
+  <div id="sections"></div>
+
+  <fieldset><legend>E. Senarai pencapaian</legend>
+    <small style="color:var(--mut)">Pencapaian murid yang dilatih guru atau anugerah yang diperoleh guru di mana-mana peringkat PASTI.</small>
+    <div id="ach"></div>
+    <button type="button" class="s" onclick="addAch()" style="margin-top:8px">Tambah pencapaian</button>
+  </fieldset>
+
+  <fieldset><legend>Untuk diisi oleh penilai</legend>
+    <div class="grid">
+      <label class="f">Nama<input id="penilai" required></label>
+      <label class="f">No. K/P<input id="penilaiKp" required></label>
+    </div>
+    <label class="f">Jawatan<input id="penilaiJawatan" required></label>
+    <label class="f">Ulasan<textarea id="ulasan" rows="3"></textarea></label>
+  </fieldset>
+  <div class="sub" id="grand">Jumlah keseluruhan: 0 / 100</div>
+  <div id="msg" class="msg"></div>
+  <button class="p" id="save" onclick="save()">Simpan penilaian</button>
+  </form>
+</section>
+
+<!-- PANEL 2: SEMAKAN KEPUTUSAN -->
+<section id="p2" class="panel">
+  <div id="lock">
+    <div class="bar"><input id="pin" type="password" placeholder="Masukkan PIN semakan"><button class="p" onclick="load()">Buka semakan</button></div>
+    <div id="lmsg" class="msg err"></div>
+  </div>
+  <div id="res" style="display:none">
+    <div class="bar">
+      <input id="q" placeholder="Cari nama / cawangan" oninput="render()">
+      <select id="fy" onchange="render()"><option value="">Semua tahun</option></select>
+      <button class="s" onclick="load()">Muat semula</button>
+    </div>
+    <div class="wrap"><table>
+      <thead><tr><th>Nama</th><th>Cawangan</th><th>Tahun</th><th>Markah</th><th>Gred</th></tr></thead>
+      <tbody id="tb"></tbody>
+    </table></div>
+    <div id="det"></div>
+  </div>
+</section>
+</main>
+
+<script>
+const S = [
+ {k:'A',t:'A. Perlaksanaan tugasan (50%)',i:[
+  ['Rancangan Pengajaran Harian (RPH)','Semakan buku RPH oleh pengurus sepanjang tahun'],
+  ['Penguasaan terhadap subjek dalam PdPc','Kemahiran setiap subjek dalam pengajaran bersama murid'],
+  ['Tahap kreativiti dalam PdPc','Penggunaan bahan bantu mengajar (BBM)'],
+  ['Kawalan kelas & murid','Kemampuan mengawal murid sepanjang aktiviti PASTI'],
+  ['Perlaksanaan tugasan harian','Rujuk jadual bertugas'],
+  ['Disiplin kehadiran & masa','Waktu kehadiran & ketepatan masa mengikut jadual'],
+  ['Etika pemakaian','Rujuk Manual Pengurusan PASTI & jadual uniform MGP'],
+  ['Komitmen terhadap aktiviti luar kelas','Kesungguhan melaksanakan tugasan selain PdPc, cth latihan pertandingan'],
+  ['Penyertaan ke bengkel / kursus / latihan','Bilangan penyertaan = kadar penilaian (maksimum 5)','n'],
+  ['Kemampuan menerima & melaksanakan arahan','Pemerhatian & pemantauan pengurus sepanjang tahun']]},
+ {k:'B',t:'B. Personaliti diri (25%)',i:[
+  ['Tahap proaktif & inisiatif','Kepekaan di PASTI (common sense) & kemampuan mencipta sistem, kaedah dan proses baru'],
+  ['Nilai kepimpinan','Pemerhatian & pemantauan pengurus sepanjang tahun'],
+  ['Sahsiah guru','Akhlak sebagai muslimah, adab, penampilan imej sebagai duta PASTI'],
+  ['Bekerja dalam kumpulan (team work)','Kemampuan dan kesungguhan bekerja dalam satu pasukan antara pengurus dan guru'],
+  ['Nilai keprihatinan','Common sense yang tinggi dan kasih sayang kepada murid serta keadaan sekeliling']]},
+ {k:'C',t:'C. Komunikasi (15%)',i:[['Hubungan dengan pengurus',''],['Hubungan dengan rakan sekerja',''],['Hubungan dengan ibu / bapa murid','']]},
+ {k:'D',t:'D. Keterlibatan dengan PAS (10%)',i:[
+  ['Aktiviti Majlis Guru PASTI','Bilangan kehadiran = kadar penilaian (maksimum 5)','n'],
+  ['Program PASTI (AJK) / PAS / NGO PAS','Bilangan kehadiran = kadar penilaian (maksimum 5)','n']]}
+];
+const sc = {};
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function build() {
+  $('sections').innerHTML = S.map(s => `<fieldset><legend>${s.t}</legend>` + s.i.map((it, n) => {
+    const id = s.k + (n + 1);
+    const ctl = it[2] === 'n'
+      ? `<input class="cnt" type="number" min="0" placeholder="Bilangan" oninput="cnt('${id}',this.value)"> <span id="r_${id}" class="pill">Kadar: –</span>`
+      : [1,2,3,4,5].map(v => `<label><input type="radio" name="${id}" value="${v}" onchange="setS('${id}',${v})"><span>${v}</span></label>`).join('');
+    return `<div class="item"><b>${n + 1}. ${it[0]}</b><small>${it[1]}</small><div class="rate">${ctl}</div></div>`;
+  }).join('') + `<div class="sub" id="sub_${s.k}"></div></fieldset>`).join('');
+  tally();
+}
+function setS(id, v) { sc[id] = v; tally(); }
+function cnt(id, v) {
+  const r = Math.min(Number(v) || 0, 5);
+  if (r >= 1) sc[id] = r; else delete sc[id];
+  $('r_' + id).textContent = 'Kadar: ' + (r >= 1 ? r : '–');
+  tally();
+}
+function tally() {
+  let g = 0;
+  S.forEach(s => {
+    let t = 0; s.i.forEach((_, n) => t += sc[s.k + (n + 1)] || 0);
+    g += t; $('sub_' + s.k).textContent = 'Jumlah: ' + t + ' / ' + s.i.length * 5;
+  });
+  $('grand').textContent = 'Jumlah keseluruhan: ' + g + ' / 100';
+}
+function addAch(p = '', a = '') {
+  const d = document.createElement('div');
+  d.className = 'grid'; d.style.marginTop = '8px';
+  d.innerHTML = '<input class="ap" placeholder="Program"><input class="aa" placeholder="Pencapaian & peringkat">';
+  $('ach').appendChild(d);
+}
+
+function save() {
+  const need = ['tahun','nama','kp','cawangan','tempoh','penilai','penilaiKp','penilaiJawatan'];
+  const miss = need.find(k => !$(k).value.trim());
+  const open = [];
+  S.forEach(s => s.i.forEach((_, n) => { if (!sc[s.k + (n + 1)]) open.push(s.k + (n + 1)); }));
+  const m = $('msg'); m.className = 'msg err';
+  if (miss) { m.textContent = 'Lengkapkan maklumat wajib: ' + miss; $(miss).focus(); return; }
+  if (open.length) { m.textContent = 'Skor belum diisi: ' + open.join(', '); return; }
+  const ach = [...document.querySelectorAll('#ach .grid')].map(d => ({program: d.querySelector('.ap').value, hasil: d.querySelector('.aa').value})).filter(x => x.program || x.hasil);
+  const data = {scores: sc, pencapaian: ach};
+  need.concat(['elaun','jawatan','ulasan']).forEach(k => data[k] = $(k).value.trim());
+  $('save').disabled = true; m.className = 'msg'; m.textContent = 'Menyimpan...';
+  google.script.run
+    .withSuccessHandler(r => {
+      m.textContent = 'Tersimpan. Markah: ' + r.jumlah + '/100 (' + r.gred + '). ID: ' + r.id;
+      $('save').disabled = false; $('frm').reset();
+      for (const k in sc) delete sc[k];
+      $('ach').innerHTML = ''; build();
+    })
+    .withFailureHandler(e => { m.className = 'msg err'; m.textContent = 'Gagal: ' + e.message; $('save').disabled = false; })
+    .saveEvaluation(data);
+}
+
+let rows = [];
+function load() {
+  $('lmsg').textContent = '';
+  google.script.run
+    .withSuccessHandler(r => {
+      rows = r; $('lock').style.display = 'none'; $('res').style.display = 'block';
+      const ys = [...new Set(r.map(x => x.Tahun))].sort().reverse();
+      $('fy').innerHTML = '<option value="">Semua tahun</option>' + ys.map(y => `<option>${esc(y)}</option>`).join('');
+      render();
+    })
+    .withFailureHandler(e => { $('lmsg').textContent = e.message.replace(/^.*Error: /, ''); })
+    .getEvaluations($('pin').value);
+}
+function render() {
+  const q = $('q').value.toLowerCase(), y = $('fy').value;
+  const list = rows.filter(r => (!y || String(r.Tahun) === y) && (r.Nama + ' ' + r.Cawangan).toLowerCase().includes(q));
+  $('tb').innerHTML = list.length ? list.map(r => `<tr class="r" onclick="show('${esc(r.ID)}')"><td>${esc(r.Nama)}</td><td>${esc(r.Cawangan)}</td><td>${esc(r.Tahun)}</td><td><b>${esc(r.Jumlah)}</b>/100</td><td><span class="pill">${esc(r.Gred)}</span></td></tr>`).join('')
+    : '<tr><td colspan="5">Tiada rekod ditemui.</td></tr>';
+}
+function show(id) {
+  const r = rows.find(x => x.ID === id); if (!r) return;
+  let ach = []; try { ach = JSON.parse(r.Pencapaian || '[]'); } catch (e) {}
+  $('det').innerHTML = `<div class="det"><h3>${esc(r.Nama)} · ${esc(r.Tahun)}</h3>
+   <div>${esc(r['No KP'])} · ${esc(r.Cawangan)} · Tempoh: ${esc(r.Tempoh)}</div>
+   <div class="mini"><div><b>${esc(r['Jumlah A'])}/50</b>Tugasan</div><div><b>${esc(r['Jumlah B'])}/25</b>Personaliti</div><div><b>${esc(r['Jumlah C'])}/15</b>Komunikasi</div><div><b>${esc(r['Jumlah D'])}/10</b>Keterlibatan</div><div><b>${esc(r.Jumlah)}/100</b>${esc(r.Gred)}</div></div>
+   <p><b>Pencapaian:</b> ${ach.length ? ach.map(a => esc(a.program) + ' – ' + esc(a.hasil)).join('; ') : '–'}</p>
+   <p><b>Ulasan:</b> ${esc(r.Ulasan) || '–'}</p>
+   <small>Dinilai oleh ${esc(r.Penilai)} (${esc(r['Jawatan Penilai'])})</small>
+   <div class="noprint" style="margin-top:10px"><button class="s" onclick="window.print()">Cetak</button></div></div>`;
+  $('det').scrollIntoView({behavior: 'smooth'});
+}
+function tab(n) {
+  [1,2].forEach(i => { $('p' + i).classList.toggle('on', i === n); $('t' + i).classList.toggle('on', i === n); });
+}
+$('tahun').value = new Date().getFullYear();
+build(); addAch();
+</script>
+</body>
+</html>
