@@ -1,245 +1,209 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-<base target="_top">
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Penilaian Prestasi Guru PASTI</title>
+<title>Penilaian Prestasi Guru PASTI Kawasan Batu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--g:#2e7d32;--gd:#1b5e20;--gl:#e8f3e8;--ink:#1d2a1d;--mut:#5f6f5f;--line:#cfdccf;--bg:#f6f9f6;--card:#fff;--err:#b3261e}
-@media (prefers-color-scheme:dark){:root{--g:#66bb6a;--gd:#a5d6a7;--gl:#1f3322;--ink:#e6efe6;--mut:#9db09d;--line:#35503a;--bg:#121a13;--card:#1a251b;--err:#f2b8b5}}
+:root{--g:#1f6b2c;--g2:#3f9b3a;--bg:#f2f6f1;--ink:#14231a;--mut:#5b6b60;--line:#d5dfd3;--red:#b3261e;--card:#fff}
 *{box-sizing:border-box}
-body{margin:0;font:15px/1.5 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:var(--g);color:#fff;padding:18px 16px 0}
-header h1{margin:0;font-size:20px}header p{margin:2px 0 12px;opacity:.9;font-size:13px}
-nav{display:flex;gap:4px;max-width:900px;margin:auto}
-nav button{border:0;background:rgba(255,255,255,.18);color:#fff;padding:10px 18px;border-radius:8px 8px 0 0;font:inherit;cursor:pointer}
-nav button.on{background:var(--bg);color:var(--gd);font-weight:600}
-main{max-width:900px;margin:auto;padding:16px}
-section.panel{display:none}section.panel.on{display:block}
-fieldset{border:1px solid var(--line);background:var(--card);border-radius:10px;margin:0 0 16px;padding:14px 16px}
-legend{font-weight:700;color:var(--gd);padding:0 6px}
-label.f{display:block;margin:8px 0;font-size:13px;color:var(--mut)}
-input,textarea,select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:6px;font:inherit;background:var(--card);color:var(--ink)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
-@media(max-width:600px){.grid{grid-template-columns:1fr}}
-.item{padding:10px 0;border-top:1px solid var(--line)}
-.item:first-of-type{border-top:0}
-.item b{display:block}.item small{color:var(--mut)}
-.rate{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;align-items:center}
-.rate input{position:absolute;opacity:0;width:0}
-.rate label{min-width:42px;text-align:center;padding:6px 0;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--card)}
-.rate input:checked+span{background:var(--g);color:#fff}
-.rate label span{display:block;border-radius:5px;padding:6px 0;margin:-6px 0}
-.rate input:focus-visible+span{outline:2px solid var(--gd);outline-offset:2px}
-.rate .cnt{width:90px}
-.sub{text-align:right;font-weight:700;color:var(--gd);margin-top:8px}
-.legend{font-size:12px;color:var(--mut);margin:-6px 0 12px}
-button.p{background:var(--g);color:#fff;border:0;padding:11px 22px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer}
-button.s{background:var(--gl);color:var(--gd);border:1px solid var(--line);padding:7px 12px;border-radius:6px;font:inherit;cursor:pointer}
-.msg{margin:10px 0;font-weight:600}.msg.err{color:var(--err)}
-.bar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}.bar>*{flex:1;min-width:140px}
-table{width:100%;border-collapse:collapse;background:var(--card);border-radius:10px;overflow:hidden}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);font-size:14px}
-th{background:var(--gl);color:var(--gd)}
-tr.r{cursor:pointer}tr.r:hover{background:var(--gl)}
-.wrap{overflow-x:auto}
-.pill{padding:2px 10px;border-radius:99px;background:var(--gl);color:var(--gd);font-size:12px;white-space:nowrap}
-.det{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-top:14px}
-.det h3{margin:0 0 6px;color:var(--gd)}
-.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}
-.mini div{background:var(--gl);border-radius:8px;padding:8px;text-align:center}.mini b{display:block;font-size:20px;color:var(--gd)}
-@media print{header,nav,.bar,#lock,.noprint{display:none!important}}
+body{margin:0;font:16px/1.5 'Atkinson Hyperlegible',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:84px}
+header{background:var(--g);color:#fff;padding:14px 16px 0;position:sticky;top:0;z-index:5}
+header h1{font-size:1.05rem;margin:0 0 10px}
+nav{display:flex;gap:4px}
+nav button{flex:1;padding:10px;border:0;background:rgba(255,255,255,.14);color:#fff;font:inherit;border-radius:8px 8px 0 0;cursor:pointer}
+nav button.on{background:var(--bg);color:var(--g);font-weight:700}
+main{max-width:760px;margin:0 auto;padding:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:14px}
+.card h2{font-size:1.05rem;margin:0 0 4px;display:flex;justify-content:space-between;gap:8px}
+.card h2 span{color:var(--g);font-weight:700;white-space:nowrap}
+label.f{display:block;margin:12px 0 4px;font-weight:700;font-size:.92rem}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;padding:12px;font:inherit;border:1px solid #aebcab;border-radius:8px;background:#fff}
+input:focus,textarea:focus,select:focus,button:focus-visible{outline:3px solid #9ad39a;outline-offset:1px}
+.q{border-top:1px solid var(--line);padding:12px 0}.q:first-of-type{border-top:0}
+.q b{display:block}.q small{display:block;color:var(--mut);margin-bottom:8px}
+.q.err{background:#fdecea;border-radius:8px;padding:12px 8px}
+.scale{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.scale input{position:absolute;opacity:0}
+.scale label{text-align:center;padding:12px 0;border:1px solid #aebcab;border-radius:8px;font-weight:700;cursor:pointer;background:#fff}
+.scale input:checked+label{background:var(--g);color:#fff;border-color:var(--g)}
+.scale input:focus-visible+label{outline:3px solid #9ad39a}
+.ends{display:flex;justify-content:space-between;font-size:.75rem;color:var(--mut);margin-top:3px}
+.cnt{display:flex;gap:10px;align-items:center}.cnt input{max-width:110px}.cnt em{font-style:normal;color:var(--g);font-weight:700}
+.row{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;margin-bottom:6px}
+button.b{padding:12px 16px;border:0;border-radius:8px;background:var(--g);color:#fff;font:inherit;font-weight:700;cursor:pointer}
+button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{background:var(--red)}button.b:disabled{opacity:.6}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--g);padding:8px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:6}
+.bar div{font-size:.8rem;color:var(--mut)}.bar strong{color:var(--ink);font-size:1.15rem}
+.hide{display:none!important}
+#fmsg{position:fixed;left:12px;right:12px;bottom:78px;z-index:9}#fmsg .msg{box-shadow:0 2px 8px rgba(0,0,0,.25);margin:0}#fmsg .e{background:#fdecea}#fmsg .s{background:#e3f4e1}
+.warn{background:#fff4d6;border:1px solid #e0b63c;padding:10px;border-radius:8px;margin-bottom:14px}
+.msg{padding:10px;border-radius:8px;margin:10px 0}.msg.e{background:#fdecea;color:var(--red)}.msg.s{background:#e3f4e1;color:var(--g)}
+.kpi{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.kpi div{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px}.kpi strong{display:block;font-size:1.5rem;color:var(--g)}.kpi small{color:var(--mut)}
+.hb{margin:8px 0}.hb p{margin:0 0 2px;display:flex;justify-content:space-between;font-size:.9rem}
+.hb i{display:block;height:12px;background:#e4ebe2;border-radius:6px;overflow:hidden}.hb i u{display:block;height:100%;background:var(--g2)}
+.li{display:flex;justify-content:space-between;gap:8px;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:8px;font:inherit;cursor:pointer}
+.li small{color:var(--mut);display:block}.li strong{color:var(--g);font-size:1.2rem}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:20;overflow:auto;padding:12px}
+.modal .card{max-width:640px;margin:0 auto}
+.sc{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:6px;margin:6px 0}.sc span{background:var(--bg);border-radius:6px;padding:4px 6px;font-size:.85rem}
+@media(min-width:600px){.kpi{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
-<header>
-  <h1>Laporan Penilaian Prestasi Guru</h1>
-  <p>PASTI Dewan Pemuda PAS Kawasan Batu</p>
-  <nav>
-    <button id="t1" class="on" onclick="tab(1)">Isi Borang</button>
-    <button id="t2" onclick="tab(2)">Semakan Keputusan</button>
-  </nav>
-</header>
+<header><h1>Laporan Penilaian Prestasi Guru · PASTI DP PAS Kawasan Batu</h1>
+<nav><button id="t1" class="on">Borang</button><button id="t2">Dashboard</button></nav></header>
 <main>
+<div id="warn" class="warn hide">URL Apps Script belum dimasukkan. Edit <code>APPS_SCRIPT_URL</code> dalam index.html.</div>
 
-<!-- PANEL 1: ISI BORANG -->
-<section id="p1" class="panel on">
-  <form id="frm" onsubmit="return false">
-  <fieldset><legend>Maklumat guru yang dinilai</legend>
-    <div class="grid">
-      <label class="f">Tahun<input id="tahun" type="number" min="2020" max="2100" required></label>
-      <label class="f">Nama<input id="nama" required></label>
-      <label class="f">No. kad pengenalan<input id="kp" inputmode="numeric" maxlength="14" placeholder="cth: 900101-10-1234" required></label>
-      <label class="f">PASTI cawangan<input id="cawangan" required></label>
-      <label class="f">Tempoh perkhidmatan di PASTI Kawasan Batu (tulis tarikh)<input id="tempoh" required></label>
-      <label class="f">Elaun asas (RM)<input id="elaun" inputmode="decimal"></label>
-    </div>
-    <label class="f">Jawatan dalam PASTI cawangan / jabatan PASTI / Majlis Guru PASTI (senaraikan)<textarea id="jawatan" rows="2"></textarea></label>
-  </fieldset>
-  <p class="legend">Skala: 5 – Sangat tinggi · 4 – Tinggi · 3 – Sederhana · 2 – Rendah · 1 – Sangat rendah</p>
-  <div id="sections"></div>
+<!-- ============ PANEL BORANG ============ -->
+<div id="p1">
+<form id="frm" novalidate>
+<div class="card"><h2>Maklumat Guru Yang Dinilai</h2>
+<label class="f" for="tahun">Tahun</label><input type="number" id="tahun" inputmode="numeric">
+<label class="f" for="nama">Nama</label><input type="text" id="nama" autocomplete="off">
+<label class="f" for="nokp">No. Kad Pengenalan</label><input type="text" id="nokp" inputmode="numeric" maxlength="14" placeholder="000000-00-0000">
+<label class="f" for="cawangan">PASTI Cawangan</label><input type="text" id="cawangan">
+<label class="f" for="tempoh">Tempoh Perkhidmatan di PASTI Kawasan Batu (tulis tarikh)</label><input type="text" id="tempoh" placeholder="cth: 01/03/2020 - kini">
+<label class="f" for="elaun">Elaun Asas (RM)</label><input type="text" id="elaun" inputmode="decimal">
+<label class="f" for="jawatan">Jawatan dalam PASTI Cawangan / Jabatan PASTI / Majlis Guru PASTI</label><textarea id="jawatan" rows="2"></textarea></div>
+<div id="secs"></div>
+<div class="card"><h2>E. Senarai Pencapaian</h2><small style="color:var(--mut)">Pencapaian murid yang dilatih atau anugerah guru di mana-mana peringkat PASTI.</small>
+<div id="ach" style="margin-top:8px"></div><button type="button" class="b o" id="addAch">+ Tambah baris</button></div>
+<div class="card"><h2>Untuk Diisi Oleh Penilai</h2>
+<label class="f" for="pNama">Nama</label><input type="text" id="pNama">
+<label class="f" for="pKp">No. K/P</label><input type="text" id="pKp" inputmode="numeric" maxlength="14">
+<label class="f" for="pJawatan">Jawatan</label><input type="text" id="pJawatan">
+<label class="f" for="ulasan">Ulasan</label><textarea id="ulasan" rows="3"></textarea></div>
+<div id="fmsg"></div>
+<div class="bar"><div>Jumlah <br><strong id="tot">0</strong> / 100</div><div id="sub">A 0/50 · B 0/25 · C 0/15 · D 0/10</div><button class="b" id="send">Hantar</button></div>
+</form></div>
 
-  <fieldset><legend>E. Senarai pencapaian</legend>
-    <small style="color:var(--mut)">Pencapaian murid yang dilatih guru atau anugerah yang diperoleh guru di mana-mana peringkat PASTI.</small>
-    <div id="ach"></div>
-    <button type="button" class="s" onclick="addAch()" style="margin-top:8px">Tambah pencapaian</button>
-  </fieldset>
-
-  <fieldset><legend>Untuk diisi oleh penilai</legend>
-    <div class="grid">
-      <label class="f">Nama<input id="penilai" required></label>
-      <label class="f">No. K/P<input id="penilaiKp" required></label>
-    </div>
-    <label class="f">Jawatan<input id="penilaiJawatan" required></label>
-    <label class="f">Ulasan<textarea id="ulasan" rows="3"></textarea></label>
-  </fieldset>
-  <div class="sub" id="grand">Jumlah keseluruhan: 0 / 100</div>
-  <div id="msg" class="msg"></div>
-  <button class="p" id="save" onclick="save()">Simpan penilaian</button>
-  </form>
-</section>
-
-<!-- PANEL 2: SEMAKAN KEPUTUSAN -->
-<section id="p2" class="panel">
-  <div id="lock">
-    <div class="bar"><input id="pin" type="password" placeholder="Masukkan PIN semakan"><button class="p" onclick="load()">Buka semakan</button></div>
-    <div id="lmsg" class="msg err"></div>
-  </div>
-  <div id="res" style="display:none">
-    <div class="bar">
-      <input id="q" placeholder="Cari nama / cawangan" oninput="render()">
-      <select id="fy" onchange="render()"><option value="">Semua tahun</option></select>
-      <button class="s" onclick="load()">Muat semula</button>
-    </div>
-    <div class="wrap"><table>
-      <thead><tr><th>Nama</th><th>Cawangan</th><th>Tahun</th><th>Markah</th><th>Gred</th></tr></thead>
-      <tbody id="tb"></tbody>
-    </table></div>
-    <div id="det"></div>
-  </div>
-</section>
+<!-- ============ PANEL DASHBOARD ============ -->
+<div id="p2" class="hide">
+<div id="lock" class="card"><h2>Dashboard Semakan Keputusan</h2>
+<label class="f" for="pin">PIN</label><input type="password" id="pin" inputmode="numeric">
+<div id="lmsg"></div><p><button class="b" id="go">Buka</button></p></div>
+<div id="dash" class="hide">
+<div style="display:flex;gap:8px;margin-bottom:10px"><select id="fy"></select><button class="b o" id="rf">Muat semula</button><button class="b o" id="csv">CSV</button></div>
+<input type="text" id="q" placeholder="Cari nama / cawangan" style="margin-bottom:10px">
+<div class="kpi" id="kpi"></div>
+<div class="card"><h2>Purata mengikut bahagian</h2><div id="secAvg"></div></div>
+<div class="card"><h2>5 kriteria paling lemah</h2><div id="weak"></div></div>
+<h3>Senarai guru</h3><div id="list"></div></div></div>
 </main>
+<div id="modal" class="modal hide"></div>
 
 <script>
-const S = [
- {k:'A',t:'A. Perlaksanaan tugasan (50%)',i:[
-  ['Rancangan Pengajaran Harian (RPH)','Semakan buku RPH oleh pengurus sepanjang tahun'],
-  ['Penguasaan terhadap subjek dalam PdPc','Kemahiran setiap subjek dalam pengajaran bersama murid'],
-  ['Tahap kreativiti dalam PdPc','Penggunaan bahan bantu mengajar (BBM)'],
-  ['Kawalan kelas & murid','Kemampuan mengawal murid sepanjang aktiviti PASTI'],
-  ['Perlaksanaan tugasan harian','Rujuk jadual bertugas'],
-  ['Disiplin kehadiran & masa','Waktu kehadiran & ketepatan masa mengikut jadual'],
-  ['Etika pemakaian','Rujuk Manual Pengurusan PASTI & jadual uniform MGP'],
-  ['Komitmen terhadap aktiviti luar kelas','Kesungguhan melaksanakan tugasan selain PdPc, cth latihan pertandingan'],
-  ['Penyertaan ke bengkel / kursus / latihan','Bilangan penyertaan = kadar penilaian (maksimum 5)','n'],
-  ['Kemampuan menerima & melaksanakan arahan','Pemerhatian & pemantauan pengurus sepanjang tahun']]},
- {k:'B',t:'B. Personaliti diri (25%)',i:[
-  ['Tahap proaktif & inisiatif','Kepekaan di PASTI (common sense) & kemampuan mencipta sistem, kaedah dan proses baru'],
-  ['Nilai kepimpinan','Pemerhatian & pemantauan pengurus sepanjang tahun'],
-  ['Sahsiah guru','Akhlak sebagai muslimah, adab, penampilan imej sebagai duta PASTI'],
-  ['Bekerja dalam kumpulan (team work)','Kemampuan dan kesungguhan bekerja dalam satu pasukan antara pengurus dan guru'],
-  ['Nilai keprihatinan','Common sense yang tinggi dan kasih sayang kepada murid serta keadaan sekeliling']]},
- {k:'C',t:'C. Komunikasi (15%)',i:[['Hubungan dengan pengurus',''],['Hubungan dengan rakan sekerja',''],['Hubungan dengan ibu / bapa murid','']]},
- {k:'D',t:'D. Keterlibatan dengan PAS (10%)',i:[
-  ['Aktiviti Majlis Guru PASTI','Bilangan kehadiran = kadar penilaian (maksimum 5)','n'],
-  ['Program PASTI (AJK) / PAS / NGO PAS','Bilangan kehadiran = kadar penilaian (maksimum 5)','n']]}
-];
-const sc = {};
-const $ = id => document.getElementById(id);
-const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* ==================== EDIT DI SINI ==================== */
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-sXvT0LB9hkcWRrbPOIvvJ5vrNiaMmpCkGv-Gdf4qfMpyuaMv-24fEgE351e6AbsV/exec';
+/* ====================================================== */
 
-function build() {
-  $('sections').innerHTML = S.map(s => `<fieldset><legend>${s.t}</legend>` + s.i.map((it, n) => {
-    const id = s.k + (n + 1);
-    const ctl = it[2] === 'n'
-      ? `<input class="cnt" type="number" min="0" placeholder="Bilangan" oninput="cnt('${id}',this.value)"> <span id="r_${id}" class="pill">Kadar: –</span>`
-      : [1,2,3,4,5].map(v => `<label><input type="radio" name="${id}" value="${v}" onchange="setS('${id}',${v})"><span>${v}</span></label>`).join('');
-    return `<div class="item"><b>${n + 1}. ${it[0]}</b><small>${it[1]}</small><div class="rate">${ctl}</div></div>`;
-  }).join('') + `<div class="sub" id="sub_${s.k}"></div></fieldset>`).join('');
-  tally();
-}
-function setS(id, v) { sc[id] = v; tally(); }
-function cnt(id, v) {
-  const r = Math.min(Number(v) || 0, 5);
-  if (r >= 1) sc[id] = r; else delete sc[id];
-  $('r_' + id).textContent = 'Kadar: ' + (r >= 1 ? r : '–');
-  tally();
-}
-function tally() {
-  let g = 0;
-  S.forEach(s => {
-    let t = 0; s.i.forEach((_, n) => t += sc[s.k + (n + 1)] || 0);
-    g += t; $('sub_' + s.k).textContent = 'Jumlah: ' + t + ' / ' + s.i.length * 5;
-  });
-  $('grand').textContent = 'Jumlah keseluruhan: ' + g + ' / 100';
-}
-function addAch(p = '', a = '') {
-  const d = document.createElement('div');
-  d.className = 'grid'; d.style.marginTop = '8px';
-  d.innerHTML = '<input class="ap" placeholder="Program"><input class="aa" placeholder="Pencapaian & peringkat">';
-  $('ach').appendChild(d);
-}
+const SEC=[
+{k:'A',t:'Perlaksanaan Tugasan',w:50,i:[
+['Rancangan Pengajaran Harian (RPH)','Semakan buku RPH oleh pengurus sepanjang tahun'],
+['Penguasaan Terhadap Subjek Dalam PdPc','Kemahiran setiap subjek dalam pengajaran bersama murid'],
+['Tahap Kreativiti Dalam PdPc','Penggunaan Bahan Bantu Mengajar (BBM)'],
+['Kawalan Kelas & Murid','Kemampuan mengawal murid sepanjang aktiviti PASTI'],
+['Perlaksanaan Tugasan Harian','Rujuk jadual bertugas'],
+['Disiplin Kehadiran & Masa','Waktu kehadiran & ketepatan masa mengikut jadual'],
+['Etika Pemakaian','Rujuk Manual Pengurusan PASTI & Jadual Uniform MGP'],
+['Komitmen Terhadap Aktiviti Luar Kelas','Kesungguhan melaksanakan tugasan selain PdPc seperti latihan pertandingan'],
+['Penyertaan Ke Bengkel / Kursus / Latihan','Bilangan penyertaan = kadar penilaian (lebih 5 = 5)',1],
+['Kemampuan Menerima & Melaksanakan Arahan','Pemerhatian & pemantauan pengurus sepanjang tahun']]},
+{k:'B',t:'Personaliti Diri',w:25,i:[
+['Tahap Proaktif & Inisiatif','Kepekaan di PASTI (common sense) & kemampuan mencipta sistem, kaedah dan proses baru'],
+['Nilai Kepimpinan','Pemerhatian & pemantauan pengurus sepanjang tahun'],
+['Sahsiah Guru','Akhlak sebagai muslimah, adab, penampilan imej sebagai duta PASTI'],
+['Bekerja Dalam Kumpulan (Team Work)','Kemampuan dan kesungguhan bekerja dalam pasukan antara pengurus dan guru'],
+['Nilai Keprihatinan','Common sense tinggi dan kasih sayang kepada murid serta keadaan sekeliling']]},
+{k:'C',t:'Komunikasi',w:15,i:[['Hubungan Dengan Pengurus',''],['Hubungan Dengan Rakan Sekerja',''],['Hubungan Dengan Ibu / Bapa Murid','']]},
+{k:'D',t:'Keterlibatan Dengan PAS',w:10,i:[
+['Aktiviti Majlis Guru PASTI','Bilangan kehadiran = kadar penilaian (lebih 5 = 5)',1],
+['Program-Program PASTI (AJK) / PAS / NGO PAS','Bilangan kehadiran = kadar penilaian (lebih 5 = 5)',1]]}];
+const $=id=>document.getElementById(id), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LBL={};SEC.forEach(s=>s.i.forEach((x,n)=>LBL[s.k+(n+1)]=x[0]));
 
-function save() {
-  const need = ['tahun','nama','kp','cawangan','tempoh','penilai','penilaiKp','penilaiJawatan'];
-  const miss = need.find(k => !$(k).value.trim());
-  const open = [];
-  S.forEach(s => s.i.forEach((_, n) => { if (!sc[s.k + (n + 1)]) open.push(s.k + (n + 1)); }));
-  const m = $('msg'); m.className = 'msg err';
-  if (miss) { m.textContent = 'Lengkapkan maklumat wajib: ' + miss; $(miss).focus(); return; }
-  if (open.length) { m.textContent = 'Skor belum diisi: ' + open.join(', '); return; }
-  const ach = [...document.querySelectorAll('#ach .grid')].map(d => ({program: d.querySelector('.ap').value, hasil: d.querySelector('.aa').value})).filter(x => x.program || x.hasil);
-  const data = {scores: sc, pencapaian: ach};
-  need.concat(['elaun','jawatan','ulasan']).forEach(k => data[k] = $(k).value.trim());
-  $('save').disabled = true; m.className = 'msg'; m.textContent = 'Menyimpan...';
-  google.script.run
-    .withSuccessHandler(r => {
-      m.textContent = 'Tersimpan. Markah: ' + r.jumlah + '/100 (' + r.gred + '). ID: ' + r.id;
-      $('save').disabled = false; $('frm').reset();
-      for (const k in sc) delete sc[k];
-      $('ach').innerHTML = ''; build();
-    })
-    .withFailureHandler(e => { m.className = 'msg err'; m.textContent = 'Gagal: ' + e.message; $('save').disabled = false; })
-    .saveEvaluation(data);
-}
+/* ---- bina borang ---- */
+$('secs').innerHTML=SEC.map(s=>`<div class="card"><h2>${s.k}. ${s.t} (${s.w}%)<span id="st${s.k}">0/${s.w}</span></h2>`+s.i.map((x,n)=>{const id=s.k+(n+1);
+return `<div class="q" id="q${id}"><b>${n+1}. ${x[0]}</b><small>${x[1]}</small>`+(x[2]?
+`<div class="cnt"><input type="number" min="0" inputmode="numeric" id="${id}" data-c="1" placeholder="Bil."><span>Kadar: <em id="r${id}">–</em></span></div>`:
+`<div class="scale">${[1,2,3,4,5].map(v=>`<input type="radio" name="${id}" id="${id}_${v}" value="${v}"><label for="${id}_${v}">${v}</label>`).join('')}</div><div class="ends"><span>Sangat Rendah</span><span>Sangat Tinggi</span></div>`)+`</div>`}).join('')+`</div>`).join('');
+function val(id){const c=$(id);if(c){if(c.value==='')return null;return Math.min(5,Math.max(0,parseInt(c.value)||0));}
+ const r=document.querySelector(`input[name="${id}"]:checked`);return r?+r.value:null}
+function calc(){let tot=0,parts=[];SEC.forEach(s=>{let t=0;s.i.forEach((x,n)=>{const id=s.k+(n+1),v=val(id);t+=v||0;if(x[2])$('r'+id).textContent=v==null?'–':v});
+ $('st'+s.k).textContent=t+'/'+s.w;tot+=t;parts.push(`${s.k} ${t}/${s.w}`)});$('tot').textContent=tot;$('sub').textContent=parts.join(' · ')}
+$('frm').addEventListener('input',calc);
+$('tahun').value=new Date().getFullYear();
+const kp=e=>{let d=e.target.value.replace(/\D/g,'').slice(0,12);e.target.value=d.length>8?d.slice(0,6)+'-'+d.slice(6,8)+'-'+d.slice(8):d.length>6?d.slice(0,6)+'-'+d.slice(6):d};
+$('nokp').addEventListener('input',kp);$('pKp').addEventListener('input',kp);
+function addAch(p='',c=''){const d=document.createElement('div');d.className='row';d.innerHTML=`<input type="text" placeholder="Program" value="${esc(p)}"><input type="text" placeholder="Pencapaian & peringkat" value="${esc(c)}"><button type="button" class="b o" aria-label="Buang">✕</button>`;d.querySelector('button').onclick=()=>d.remove();$('ach').appendChild(d)}
+$('addAch').onclick=()=>addAch();addAch();
 
-let rows = [];
-function load() {
-  $('lmsg').textContent = '';
-  google.script.run
-    .withSuccessHandler(r => {
-      rows = r; $('lock').style.display = 'none'; $('res').style.display = 'block';
-      const ys = [...new Set(r.map(x => x.Tahun))].sort().reverse();
-      $('fy').innerHTML = '<option value="">Semua tahun</option>' + ys.map(y => `<option>${esc(y)}</option>`).join('');
-      render();
-    })
-    .withFailureHandler(e => { $('lmsg').textContent = e.message.replace(/^.*Error: /, ''); })
-    .getEvaluations($('pin').value);
-}
-function render() {
-  const q = $('q').value.toLowerCase(), y = $('fy').value;
-  const list = rows.filter(r => (!y || String(r.Tahun) === y) && (r.Nama + ' ' + r.Cawangan).toLowerCase().includes(q));
-  $('tb').innerHTML = list.length ? list.map(r => `<tr class="r" onclick="show('${esc(r.ID)}')"><td>${esc(r.Nama)}</td><td>${esc(r.Cawangan)}</td><td>${esc(r.Tahun)}</td><td><b>${esc(r.Jumlah)}</b>/100</td><td><span class="pill">${esc(r.Gred)}</span></td></tr>`).join('')
-    : '<tr><td colspan="5">Tiada rekod ditemui.</td></tr>';
-}
-function show(id) {
-  const r = rows.find(x => x.ID === id); if (!r) return;
-  let ach = []; try { ach = JSON.parse(r.Pencapaian || '[]'); } catch (e) {}
-  $('det').innerHTML = `<div class="det"><h3>${esc(r.Nama)} · ${esc(r.Tahun)}</h3>
-   <div>${esc(r['No KP'])} · ${esc(r.Cawangan)} · Tempoh: ${esc(r.Tempoh)}</div>
-   <div class="mini"><div><b>${esc(r['Jumlah A'])}/50</b>Tugasan</div><div><b>${esc(r['Jumlah B'])}/25</b>Personaliti</div><div><b>${esc(r['Jumlah C'])}/15</b>Komunikasi</div><div><b>${esc(r['Jumlah D'])}/10</b>Keterlibatan</div><div><b>${esc(r.Jumlah)}/100</b>${esc(r.Gred)}</div></div>
-   <p><b>Pencapaian:</b> ${ach.length ? ach.map(a => esc(a.program) + ' – ' + esc(a.hasil)).join('; ') : '–'}</p>
-   <p><b>Ulasan:</b> ${esc(r.Ulasan) || '–'}</p>
-   <small>Dinilai oleh ${esc(r.Penilai)} (${esc(r['Jawatan Penilai'])})</small>
-   <div class="noprint" style="margin-top:10px"><button class="s" onclick="window.print()">Cetak</button></div></div>`;
-  $('det').scrollIntoView({behavior: 'smooth'});
-}
-function tab(n) {
-  [1,2].forEach(i => { $('p' + i).classList.toggle('on', i === n); $('t' + i).classList.toggle('on', i === n); });
-}
-$('tahun').value = new Date().getFullYear();
-build(); addAch();
+/* ---- API ---- */
+async function api(action,body={}){
+ if(APPS_SCRIPT_URL.includes('GANTI'))throw new Error('URL Apps Script belum dimasukkan dalam index.html');
+ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(APPS_SCRIPT_URL.trim()))throw new Error('URL mesti bermula https://script.google.com/ dan berakhir dengan /exec (bukan /dev).');
+ let r,t;
+ try{r=await fetch(APPS_SCRIPT_URL.trim(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action,...body})});t=await r.text()}
+ catch(e){throw new Error('Tidak dapat sambung ke Apps Script. Semak: Deploy > Who has access = Anyone, dan URL /exec betul.')}
+ let j;try{j=JSON.parse(t)}catch(e){throw new Error('Apps Script tidak pulangkan data. Biasanya akses deployment bukan "Anyone", atau script belum diberi kebenaran (Run > setup). Respons: '+t.replace(/<[^>]+>/g,' ').slice(0,120))}
+ if(!j.ok)throw new Error(j.error||'Ralat tidak diketahui');return j}
+if(APPS_SCRIPT_URL.includes('GANTI'))$('warn').classList.remove('hide');
+
+/* ---- hantar ---- */
+$('frm').addEventListener('submit',async e=>{e.preventDefault();const m=$('fmsg');m.innerHTML='';
+ document.querySelectorAll('.err').forEach(x=>x.classList.remove('err'));
+ const need=['tahun','nama','nokp','cawangan'].find(k=>!$(k).value.trim());
+ if(need){$(need).focus();m.innerHTML='<div class="msg e">Sila isi maklumat guru (tahun, nama, no. KP, cawangan).</div>';return}
+ let miss=null;SEC.forEach(s=>s.i.forEach((x,n)=>{const id=s.k+(n+1);if(val(id)==null){$('q'+id).classList.add('err');miss=miss||id}}));
+ if(miss){$('q'+miss).scrollIntoView({block:'center'});m.innerHTML='<div class="msg e">Sila lengkapkan semua kriteria yang ditanda merah.</div>';return}
+ const d={};['tahun','nama','nokp','cawangan','tempoh','elaun','jawatan','pNama','pKp','pJawatan','ulasan'].forEach(k=>d[k]=$(k).value.trim());
+ SEC.forEach(s=>s.i.forEach((x,n)=>d[s.k+(n+1)]=val(s.k+(n+1))));
+ d.pencapaian=JSON.stringify([...document.querySelectorAll('#ach .row')].map(r=>({p:r.children[0].value.trim(),c:r.children[1].value.trim()})).filter(a=>a.p||a.c));
+ const b=$('send');b.disabled=true;b.textContent='Menghantar…';m.innerHTML='<div class="msg s">Menghantar…</div>';
+ try{await api('submit',{data:d});$('frm').reset();$('ach').innerHTML='';addAch();$('tahun').value=new Date().getFullYear();calc();scrollTo(0,0);m.innerHTML='<div class="msg s">Penilaian berjaya dihantar dan direkod dalam Google Sheet.</div>';setTimeout(()=>m.innerHTML='',8000)}
+ catch(err){m.innerHTML='<div class="msg e">'+esc(err.message)+'</div>'}
+ b.disabled=false;b.textContent='Hantar'});
+
+/* ---- tab ---- */
+$('t1').onclick=()=>tab(1);$('t2').onclick=()=>tab(2);
+function tab(n){$('p1').classList.toggle('hide',n!=1);$('p2').classList.toggle('hide',n!=2);$('t1').classList.toggle('on',n==1);$('t2').classList.toggle('on',n==2);scrollTo(0,0)}
+
+/* ---- dashboard ---- */
+let PIN='',ROWS=[];
+$('go').onclick=async()=>{PIN=$('pin').value;$('lmsg').innerHTML='';try{await load();$('lock').classList.add('hide');$('dash').classList.remove('hide')}catch(e){$('lmsg').innerHTML='<div class="msg e">'+esc(e.message)+'</div>'}};
+$('pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('go').click()});
+async function load(){const j=await api('list',{pin:PIN});ROWS=j.rows.map(r=>({...r,total:+r.total,totA:+r.totA,totB:+r.totB,totC:+r.totC,totD:+r.totD}));
+ const ys=[...new Set(ROWS.map(r=>String(r.tahun)))].sort().reverse(),cur=$('fy').value;
+ $('fy').innerHTML='<option value="">Semua tahun</option>'+ys.map(y=>`<option>${y}</option>`).join('');$('fy').value=ys.includes(cur)?cur:'';render()}
+$('rf').onclick=()=>load().catch(e=>alert(e.message));$('fy').onchange=render;$('q').oninput=render;
+const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+function render(){const y=$('fy').value,q=$('q').value.toLowerCase();
+ const R=ROWS.filter(r=>(!y||String(r.tahun)===y)&&(!q||(r.nama+' '+r.cawangan).toLowerCase().includes(q))).sort((a,b)=>b.total-a.total);
+ const hi=R[0],lo=R[R.length-1];
+ $('kpi').innerHTML=[['Guru dinilai',R.length],['Purata /100',avg(R.map(r=>r.total)).toFixed(1)],['Tertinggi',hi?hi.total+' · '+esc(hi.nama):'–'],['Terendah',lo?lo.total+' · '+esc(lo.nama):'–']].map(k=>`<div><strong style="${String(k[1]).length>8?'font-size:1rem':''}">${k[1]}</strong><small>${k[0]}</small></div>`).join('');
+ const bar=(l,v,max,txt)=>`<div class="hb"><p><span>${l}</span><b>${txt}</b></p><i><u style="width:${max?Math.min(100,v/max*100):0}%"></u></i></div>`;
+ $('secAvg').innerHTML=R.length?SEC.map(s=>{const a=avg(R.map(r=>r['tot'+s.k]));return bar(s.k+'. '+s.t,a,s.w,a.toFixed(1)+' / '+s.w)}).join(''):'<p>Tiada data.</p>';
+ const ks=Object.keys(LBL).map(k=>[k,avg(R.map(r=>+r[k]))]).sort((a,b)=>a[1]-b[1]).slice(0,5);
+ $('weak').innerHTML=R.length?ks.map(k=>bar(k[0]+' '+LBL[k[0]],k[1],5,k[1].toFixed(2)+' / 5')).join(''):'<p>Tiada data.</p>';
+ $('list').innerHTML=R.length?R.map((r,i)=>`<button class="li" data-id="${r.id}"><span><b>${i+1}. ${esc(r.nama)}</b><small>${esc(r.cawangan)} · ${esc(r.tahun)}</small></span><strong>${r.total}</strong></button>`).join(''):'<p>Tiada rekod.</p>';
+ document.querySelectorAll('.li').forEach(b=>b.onclick=()=>detail(b.dataset.id))}
+function detail(id){const r=ROWS.find(x=>x.id===id);let ach=[];try{ach=JSON.parse(r.pencapaian||'[]')}catch(e){}
+ $('modal').innerHTML=`<div class="card"><h2>${esc(r.nama)}<span>${r.total}/100</span></h2><p>${esc(r.nokp)} · ${esc(r.cawangan)} · Tahun ${esc(r.tahun)}<br>Tempoh: ${esc(r.tempoh)} · Elaun: RM${esc(r.elaun)}<br>Jawatan: ${esc(r.jawatan)}</p>`+
+ SEC.map(s=>`<b>${s.k}. ${s.t}: ${r['tot'+s.k]}/${s.w}</b><div class="sc">${s.i.map((x,n)=>`<span title="${esc(x[0])}">${s.k+(n+1)}: ${r[s.k+(n+1)]}</span>`).join('')}</div>`).join('')+
+ `<b>Pencapaian</b><p>${ach.length?ach.map(a=>esc(a.p)+' — '+esc(a.c)).join('<br>'):'–'}</p><b>Penilai</b><p>${esc(r.pNama)} (${esc(r.pKp)}), ${esc(r.pJawatan)}<br>Ulasan: ${esc(r.ulasan)||'–'}<br><small>Dihantar ${esc(r.ts)}</small></p>
+ <div style="display:flex;gap:8px"><button class="b o" id="mc">Tutup</button><button class="b r" id="md">Padam</button></div></div>`;
+ $('modal').classList.remove('hide');$('mc').onclick=()=>$('modal').classList.add('hide');
+ $('md').onclick=async()=>{if(!confirm('Padam rekod ini secara kekal?'))return;try{await api('delete',{pin:PIN,id});$('modal').classList.add('hide');await load()}catch(e){alert(e.message)}}}
+$('csv').onclick=()=>{if(!ROWS.length)return;const k=Object.keys(ROWS[0]),q=v=>'"'+String(v).replace(/"/g,'""')+'"';
+ const t=[k.map(q).join(',')].concat(ROWS.map(r=>k.map(c=>q(r[c])).join(','))).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+t],{type:'text/csv'}));a.download='penilaian-guru-pasti.csv';a.click()};
+window.addEventListener('error',e=>{$('fmsg').innerHTML='<div class="msg e">Ralat skrip: '+esc(e.message)+'</div>'});
+calc();
 </script>
 </body>
 </html>
