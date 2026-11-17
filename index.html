@@ -38,6 +38,12 @@ button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{b
 .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--g);padding:8px 14px;display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:6}
 .bar div{font-size:.8rem;color:var(--mut)}.bar strong{color:var(--ink);font-size:1.15rem}
 .hide{display:none!important}
+.center{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.center .b{min-width:150px}
+.banner{max-width:760px;margin:0 auto;padding:10px 14px 0;text-align:center}
+.banner img{max-width:100%;max-height:200px;object-fit:contain}
+.banner .ph{border:2px dashed #aebcab;border-radius:10px;min-height:110px;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:.9rem}
+.fl{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap}.fl>*{flex:1 1 140px}
+.qr{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:.92rem}.qr b{color:var(--g);white-space:nowrap}
 #fmsg{position:fixed;left:12px;right:12px;bottom:78px;z-index:9}#fmsg .msg{box-shadow:0 2px 8px rgba(0,0,0,.25);margin:0}#fmsg .e{background:#fdecea}#fmsg .s{background:#e3f4e1}
 .warn{background:#fff4d6;border:1px solid #e0b63c;padding:10px;border-radius:8px;margin-bottom:14px}
 .msg{padding:10px;border-radius:8px;margin:10px 0}.msg.e{background:#fdecea;color:var(--red)}.msg.s{background:#e3f4e1;color:var(--g)}
@@ -54,6 +60,7 @@ button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{b
 </style>
 </head>
 <body>
+<div class="banner" id="banner"></div>
 <header><h1>Laporan Penilaian Prestasi Guru · PASTI DP PAS Kawasan Batu</h1>
 <nav><button id="t1" class="on">Borang</button><button id="t2">Dashboard</button></nav></header>
 <main>
@@ -66,13 +73,13 @@ button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{b
 <label class="f" for="tahun">Tahun</label><input type="number" id="tahun" inputmode="numeric">
 <label class="f" for="nama">Nama</label><input type="text" id="nama" autocomplete="off">
 <label class="f" for="nokp">No. Kad Pengenalan</label><input type="text" id="nokp" inputmode="numeric" maxlength="14" placeholder="000000-00-0000">
-<label class="f" for="cawangan">PASTI Cawangan</label><input type="text" id="cawangan">
+<label class="f" for="cawangan">PASTI Cawangan</label><select id="cawangan"></select>
 <label class="f" for="tempoh">Tempoh Perkhidmatan di PASTI Kawasan Batu (tulis tarikh)</label><input type="text" id="tempoh" placeholder="cth: 01/03/2020 - kini">
 <label class="f" for="elaun">Elaun Asas (RM)</label><input type="text" id="elaun" inputmode="decimal">
 <label class="f" for="jawatan">Jawatan dalam PASTI Cawangan / Jabatan PASTI / Majlis Guru PASTI</label><textarea id="jawatan" rows="2"></textarea></div>
 <div id="secs"></div>
 <div class="card"><h2>E. Senarai Pencapaian</h2><small style="color:var(--mut)">Pencapaian murid yang dilatih atau anugerah guru di mana-mana peringkat PASTI.</small>
-<div id="ach" style="margin-top:8px"></div><button type="button" class="b o" id="addAch">+ Tambah baris</button></div>
+<div id="ach" style="margin-top:8px"></div><div class="center"><button type="button" class="b o" id="addAch">+ Tambah baris</button></div></div>
 <div class="card"><h2>Untuk Diisi Oleh Penilai</h2>
 <label class="f" for="pNama">Nama</label><input type="text" id="pNama">
 <label class="f" for="pKp">No. K/P</label><input type="text" id="pKp" inputmode="numeric" maxlength="14">
@@ -86,9 +93,9 @@ button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{b
 <div id="p2" class="hide">
 <div id="lock" class="card"><h2>Dashboard Semakan Keputusan</h2>
 <label class="f" for="pin">PIN</label><input type="password" id="pin" inputmode="numeric">
-<div id="lmsg"></div><p><button class="b" id="go">Buka</button></p></div>
+<div id="lmsg"></div><div class="center" style="margin-top:14px"><button class="b" id="go">Buka</button></div></div>
 <div id="dash" class="hide">
-<div style="display:flex;gap:8px;margin-bottom:10px"><select id="fy"></select><button class="b o" id="rf">Muat semula</button><button class="b o" id="csv">CSV</button></div>
+<div class="fl"><select id="fy"></select><select id="fc"></select></div><div class="fl"><button class="b o" id="rf">Muat semula</button><button class="b o" id="csv">CSV</button></div>
 <input type="text" id="q" placeholder="Cari nama / cawangan" style="margin-bottom:10px">
 <div class="kpi" id="kpi"></div>
 <div class="card"><h2>Purata mengikut bahagian</h2><div id="secAvg"></div></div>
@@ -99,7 +106,9 @@ button.b.o{background:#fff;color:var(--g);border:1px solid var(--g)}button.b.r{b
 
 <script>
 /* ==================== EDIT DI SINI ==================== */
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx-sXvT0LB9hkcWRrbPOIvvJ5vrNiaMmpCkGv-Gdf4qfMpyuaMv-24fEgE351e6AbsV/exec';
+const BANNER_IMG_URL = 'https://i.postimg.cc/QtBb4skg/logo-pasti.png';   // <-- TAMPAL URL IMEJ DI SINI (cth: 'https://contoh.com/logo.png'). Kosongkan = papar ruang kosong.
+const CAWANGAN = ['PASTI Ibnu Sina','PASTI as-Siddiq','PASTI as-Syafei','PASTI al-Mustaqim','PASTI al-Qamar','PASTI Little Daie','PASTI Abqari','PASTI an-Nur']; // senarai PASTI (edit jika perlu)
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbziq4hW2oE9ZnF3NIe1q4rn8WRGmEk0R_dH0yty8M-oeLAAhv_fIulD8Mw7wqreSneM/exec';
 /* ====================================================== */
 
 const SEC=[
@@ -126,6 +135,10 @@ const SEC=[
 ['Program-Program PASTI (AJK) / PAS / NGO PAS','Bilangan kehadiran = kadar penilaian (lebih 5 = 5)',1]]}];
 const $=id=>document.getElementById(id), esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const LBL={};SEC.forEach(s=>s.i.forEach((x,n)=>LBL[s.k+(n+1)]=x[0]));
+
+/* ---- banner & dropdown cawangan ---- */
+$('banner').innerHTML=BANNER_IMG_URL?`<img src="${esc(BANNER_IMG_URL)}" alt="Logo">`:'<div class="ph">Ruang imej (isi BANNER_IMG_URL dalam kod)</div>';
+$('cawangan').innerHTML='<option value="">— Pilih PASTI —</option>'+CAWANGAN.map(c=>`<option>${c}</option>`).join('');
 
 /* ---- bina borang ---- */
 $('secs').innerHTML=SEC.map(s=>`<div class="card"><h2>${s.k}. ${s.t} (${s.w}%)<span id="st${s.k}">0/${s.w}</span></h2>`+s.i.map((x,n)=>{const id=s.k+(n+1);
@@ -179,11 +192,13 @@ $('go').onclick=async()=>{PIN=$('pin').value;$('lmsg').innerHTML='';try{await lo
 $('pin').addEventListener('keydown',e=>{if(e.key==='Enter')$('go').click()});
 async function load(){const j=await api('list',{pin:PIN});ROWS=j.rows.map(r=>({...r,total:+r.total,totA:+r.totA,totB:+r.totB,totC:+r.totC,totD:+r.totD}));
  const ys=[...new Set(ROWS.map(r=>String(r.tahun)))].sort().reverse(),cur=$('fy').value;
- $('fy').innerHTML='<option value="">Semua tahun</option>'+ys.map(y=>`<option>${y}</option>`).join('');$('fy').value=ys.includes(cur)?cur:'';render()}
-$('rf').onclick=()=>load().catch(e=>alert(e.message));$('fy').onchange=render;$('q').oninput=render;
+ $('fy').innerHTML='<option value="">Semua tahun</option>'+ys.map(y=>`<option>${y}</option>`).join('');$('fy').value=ys.includes(cur)?cur:'';
+ const cc=$('fc').value,cs=[...CAWANGAN,...new Set(ROWS.map(r=>r.cawangan).filter(c=>c&&!CAWANGAN.includes(c)))];
+ $('fc').innerHTML='<option value="">Semua PASTI</option>'+cs.map(c=>`<option>${esc(c)}</option>`).join('');$('fc').value=cs.includes(cc)?cc:'';render()}
+$('rf').onclick=()=>load().catch(e=>alert(e.message));$('fy').onchange=render;$('fc').onchange=render;$('q').oninput=render;
 const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
-function render(){const y=$('fy').value,q=$('q').value.toLowerCase();
- const R=ROWS.filter(r=>(!y||String(r.tahun)===y)&&(!q||(r.nama+' '+r.cawangan).toLowerCase().includes(q))).sort((a,b)=>b.total-a.total);
+function render(){const y=$('fy').value,c=$('fc').value,q=$('q').value.toLowerCase();
+ const R=ROWS.filter(r=>(!y||String(r.tahun)===y)&&(!c||r.cawangan===c)&&(!q||(r.nama+' '+r.cawangan).toLowerCase().includes(q))).sort((a,b)=>b.total-a.total);
  const hi=R[0],lo=R[R.length-1];
  $('kpi').innerHTML=[['Guru dinilai',R.length],['Purata /100',avg(R.map(r=>r.total)).toFixed(1)],['Tertinggi',hi?hi.total+' · '+esc(hi.nama):'–'],['Terendah',lo?lo.total+' · '+esc(lo.nama):'–']].map(k=>`<div><strong style="${String(k[1]).length>8?'font-size:1rem':''}">${k[1]}</strong><small>${k[0]}</small></div>`).join('');
  const bar=(l,v,max,txt)=>`<div class="hb"><p><span>${l}</span><b>${txt}</b></p><i><u style="width:${max?Math.min(100,v/max*100):0}%"></u></i></div>`;
@@ -194,9 +209,9 @@ function render(){const y=$('fy').value,q=$('q').value.toLowerCase();
  document.querySelectorAll('.li').forEach(b=>b.onclick=()=>detail(b.dataset.id))}
 function detail(id){const r=ROWS.find(x=>x.id===id);let ach=[];try{ach=JSON.parse(r.pencapaian||'[]')}catch(e){}
  $('modal').innerHTML=`<div class="card"><h2>${esc(r.nama)}<span>${r.total}/100</span></h2><p>${esc(r.nokp)} · ${esc(r.cawangan)} · Tahun ${esc(r.tahun)}<br>Tempoh: ${esc(r.tempoh)} · Elaun: RM${esc(r.elaun)}<br>Jawatan: ${esc(r.jawatan)}</p>`+
- SEC.map(s=>`<b>${s.k}. ${s.t}: ${r['tot'+s.k]}/${s.w}</b><div class="sc">${s.i.map((x,n)=>`<span title="${esc(x[0])}">${s.k+(n+1)}: ${r[s.k+(n+1)]}</span>`).join('')}</div>`).join('')+
+ SEC.map(s=>`<b>${s.k}. ${s.t}: ${r['tot'+s.k]}/${s.w}</b><div style="margin:4px 0 12px">${s.i.map((x,n)=>`<div class="qr"><span>${s.k+(n+1)}. ${esc(x[0])}${x[2]?' <small>(kadar daripada bilangan)</small>':''}</span><b>${r[s.k+(n+1)]} / 5</b></div>`).join('')}</div>`).join('')+
  `<b>Pencapaian</b><p>${ach.length?ach.map(a=>esc(a.p)+' — '+esc(a.c)).join('<br>'):'–'}</p><b>Penilai</b><p>${esc(r.pNama)} (${esc(r.pKp)}), ${esc(r.pJawatan)}<br>Ulasan: ${esc(r.ulasan)||'–'}<br><small>Dihantar ${esc(r.ts)}</small></p>
- <div style="display:flex;gap:8px"><button class="b o" id="mc">Tutup</button><button class="b r" id="md">Padam</button></div></div>`;
+ <div class="center"><button class="b o" id="mc">Tutup</button><button class="b r" id="md">Padam</button></div></div>`;
  $('modal').classList.remove('hide');$('mc').onclick=()=>$('modal').classList.add('hide');
  $('md').onclick=async()=>{if(!confirm('Padam rekod ini secara kekal?'))return;try{await api('delete',{pin:PIN,id});$('modal').classList.add('hide');await load()}catch(e){alert(e.message)}}}
 $('csv').onclick=()=>{if(!ROWS.length)return;const k=Object.keys(ROWS[0]),q=v=>'"'+String(v).replace(/"/g,'""')+'"';
